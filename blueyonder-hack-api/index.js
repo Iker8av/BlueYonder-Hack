@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const Parse = require('parse/node')
 const router = express.Router()
+var axios = require('axios');
 const {PARSE_APP_ID, PARSE_JAVASCRIPT_KEY} = require('./config')
 
 const app = express()
@@ -58,9 +59,7 @@ const getLocations = async (data) => {
 
 app.post('/getLocations', async (req, res) => {
     const allLocations = await getLocations(req.body)
-    console.log('allLocations: ', allLocations);
-    res.send("Done").status(200)
-    // res.send(allLocations.data.results).status(200)
+    res.send(allLocations.data.results).status(200)
   })
 
 app.get('/helloWorld', (req, res) => {
