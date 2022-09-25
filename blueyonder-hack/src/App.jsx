@@ -5,6 +5,7 @@ import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
 import { useNavigate } from "react-router-dom";
+import BusinessView from "./components/BusinessView/BusinessView";
 
 function App() {
   const navigate = useNavigate()
@@ -46,6 +47,7 @@ function App() {
          <div className="hack">Hack Monterrey 2022</div>
         </div>
       </footer>
+      <BusinessView></BusinessView>
     </div>
   );
 }
