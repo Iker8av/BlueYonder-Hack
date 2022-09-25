@@ -4,7 +4,6 @@ import { useNavigate, Outlet } from "react-router-dom";
 import App from "./App";
 import SignIn from "./components/SignIn/SignIn";
 import Login from "./components/LogIn/Login";
-import Navbar from "./components/Navbar/Navbar";
 import axios from 'axios'
 import Navbar from "./components/Navbar/Navbar";
 import BusinessView from "./components/BusinessView/BusinessView";
@@ -28,16 +27,20 @@ export default function Main() {
     addAuthenticationHeader()
 
     const handleLogout = () => {
-        localStorage.removeItem("session_token")
+      localStorage.removeItem("session_token")
+      localStorage.removeItem("username")
+      localStorage.removeItem("type")
 
-        axios.defaults.headers.common = {};
-        setIsLoggedIn(false)
+      axios.defaults.headers.common = {};
+      setIsLoggedIn(false)
+
+      window.location.reload(false);
     }
 
     const handleLogin = (user) => {
         localStorage.setItem("session_token", user["sessionToken"])
         localStorage.setItem("username", user["username"])
-        setType(user["type"])
+        localStorage.setItem("type", user["type"])
         
         addAuthenticationHeader()
 
@@ -48,7 +51,7 @@ export default function Main() {
     <BrowserRouter>
         <main>
         <section>
-          <Navbar myRef={lastNewsRef}/>
+          <Navbar myRef={lastNewsRef} isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
         </section>
           <div className="routes_container">
             <Routes>
@@ -56,7 +59,7 @@ export default function Main() {
               <Route path="/Map" element={<MapContainer/>} />
               <Route path="/SignUp" element={<SignIn handleLogin={handleLogin}/>}/>
               <Route path="/LogIn" element={<Login isLoggedIn={isLoggedIn} handleLogout={handleLogout} handleLogin={handleLogin}/>} />
-              {type == "Company" && <Route path="/Business" element={<BusinessView/>} />}
+              {localStorage.getItem("type") == "Company" && <Route path="/Business" element={<BusinessView/>} />}
             </Routes>
           </div>
         </main>

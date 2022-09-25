@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Navbar/img/logo.png"
 
-const Navbar = ({myRef, type}) => {
+const Navbar = ({myRef, isLoggedIn, handleLogout}) => {
     const navigate = useNavigate()
     const executeScroll = () => myRef.current.scrollIntoView()    
     return (
@@ -36,11 +36,11 @@ const Navbar = ({myRef, type}) => {
                             <li className="nav-item">
                             <a onClick={() => navigate("../Map", { replace: true })} className="nav-link" href="#">Map</a>
                             </li>
-                            <li className="nav-item">
-                            <a onClick={() => navigate("../SignUp", { replace: true })} className="nav-link" href="#">Sign in</a>
-                            </li>
                             <li class="nav-item">
-                            {type !== "Company" ? <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a> : <a onClick={() => navigate("../Business", { replace: true })} class="nav-link" href="#">Business</a>}
+                            {localStorage.getItem("type") !== "Company"  ? <a onClick={() => navigate("../SignUp", { replace: true })} className="nav-link" href="#">Sign in</a> : <a onClick={() => navigate("../Business", { replace: true })} class="nav-link" href="#">Business</a>}
+                            </li>
+                            <li className="nav-item">
+                            {!isLoggedIn ? <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a> : <a onClick={() => {handleLogout()}} className="nav-link" href="#">Log Out</a>}
                             </li>
                         </ul>
                         </div>

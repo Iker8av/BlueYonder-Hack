@@ -39,7 +39,7 @@ export default function Login({isLoggedIn, handleLogin}) {
             <h5>E-mail</h5>
             <input ref={email} type="text" className='email_input'/>
             <h5>Password</h5>
-            <input ref={password} type="text" className='password_input'/>
+            <input ref={password} type="password" className='password_input'/>
             <div className="login__container__button">
               <a href='' className='forgot_password'> Forgot your Password?</a>
               <button type="submit" className="login__signInButton">
