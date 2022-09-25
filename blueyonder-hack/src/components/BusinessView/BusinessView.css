@@ -3,6 +3,10 @@
     color: #101955;
 }
 
+#administration{
+    margin-left: 75px;
+}
+
 h1{
     font-size: 2rem;
     width: 100%;
@@ -10,6 +14,14 @@ h1{
     flex-direction: column;
     padding: 2rem;
     margin-right: 2rem;
+    margin-bottom: 0px;
+}
+
+.especifications > div{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
 }
 
 .administration__container{
@@ -65,4 +77,17 @@ h1{
     margin-left: auto;
     height: 300px;
     border-radius: 20px;
+}
+
+.typeList{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 0 15px;
+    font-weight: bold;
+    border-radius: 100px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }

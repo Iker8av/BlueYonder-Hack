@@ -19,6 +19,8 @@ export default function Login({isLoggedIn, handleLogin}) {
                 "password" : password.current.value
             })
 
+            // localStorage.setItem("userName", user["sessionToken"])
+            console.log(res.data)
             handleLogin(res.data.user)
             navigate("../", { replace: true })
         } catch (err) {

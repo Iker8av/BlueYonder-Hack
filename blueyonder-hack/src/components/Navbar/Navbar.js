@@ -1,8 +1,9 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import Logo from "../Navbar/img/logo.png"
 
-const Navbar = ({navigate}) => {
+const Navbar = ({type}) => {
+    const navigate = useNavigate()
     return (
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -35,7 +36,7 @@ const Navbar = ({navigate}) => {
                             <a onClick={() => navigate("../SignUp", { replace: true })} class="nav-link" href="#">Sign in</a>
                             </li>
                             <li class="nav-item">
-                            <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a>
+                            {type !== "Company" ? <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a> : <a onClick={() => navigate("../Business", { replace: true })} class="nav-link" href="#">Business</a>}
                             </li>
                         </ul>
                         </div>
