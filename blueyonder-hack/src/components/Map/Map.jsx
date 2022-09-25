@@ -11,6 +11,7 @@ export default function Map() {
     const [locSelected, setLocSelected] = React.useState(null)
     const [directions, updateDirections] = React.useState(null)
     const [ libraries ] = React.useState(['places']);
+    const [loading, setLoading] = React.useState(true)
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: "AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o",
@@ -20,12 +21,13 @@ export default function Map() {
     const mapContainerStyle = {
         width: '100%',
         height: "100%",
-        borderRadius: '10px',
+        borderRadius: '15px',
     }
 
     const options = {
         disableDefaultUI: true,
         zoomControl: true,
+        scrollwheel: false
     }
 
     const getLocations = async (coords) => {
@@ -36,6 +38,11 @@ export default function Map() {
     const addClick = (id) => {
         axios.post(`${config.API_BASE_URL}/addClick`, {id})
     }
+
+    const handleLoading = React.useCallback( async (event) => {
+        if (locations) setLoading(false)
+          
+      }, [locations])
 
     const handleOpenInMaps = (address) => {
         window.open(
@@ -88,12 +95,13 @@ export default function Map() {
   return (
     <div>
         <div className='Map'>
-            {(isLoaded && currentPos && locations) &&
+            { currentPos ? (isLoaded && currentPos && locations) &&
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     zoom={15}
                     center={{lat: currentPos.lat, lng: currentPos.lng}}
-                    options={options}>
+                    options={options}
+                    onLoad={() => handleLoading}>
                         <Marker position={{lat: currentPos.lat, lng: currentPos.lng}} />
                         {locations.map((loc) => {
                             return (
@@ -104,12 +112,13 @@ export default function Map() {
                                 >
                                 <div className='marker' onClick={() => {manageClick(loc)}}>
                                     <div>
-                                        <h3>{loc.name}</h3>
+                                        <h4>{loc.name}</h4>
                                         <p>{loc.address}</p>
+                                        {loc.type && loc.type.map((type) => {return type && <p>{type}, </p>})}
                                         <p>Interactions: {loc.clicks}  -  Capacity: {loc.capacity}% </p>
                                         <div className='mapbuttons'>
-                                            <button onClick={(e) => {handleOpenInMaps(loc.address)}}>Open In Maps</button>
-                                            <button onClick={(e) => {GetDirections(loc)}}>Get Directions</button>
+                                            <button onClick={(e) => {handleOpenInMaps(loc.address); manageClick(loc)}}>Open In Maps</button>
+                                            <button onClick={(e) => {GetDirections(loc); manageClick(loc)}}>Get Directions</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +128,9 @@ export default function Map() {
                         })}
                         {directions && <DirectionsRenderer
                             directions={directions}/>}
-                </GoogleMap>}
+                </GoogleMap> 
+                : <img className='loading' src="https://parspng.com/wp-content/uploads/2021/11/arrowpng.parspng.com-16.png" alt="" />
+                }
         </div>
     </div>
   )

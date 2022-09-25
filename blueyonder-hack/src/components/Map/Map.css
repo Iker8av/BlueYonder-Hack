@@ -1,11 +1,45 @@
+.MapContainer {
+    margin: 25px;
+}
+
+.MapContainer h2{
+    margin: 20px 20px 50px 80px;
+}
+
 .Map {
     display: flex;
     justify-content: center;
     margin: auto;
     width: 80%;
-    height: 600px;
+    height: 650px;
     align-items: center;
 }
+
+.Map .loading{
+    width: 25%;
+    -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
 
 .marker{
     display: flex;
@@ -13,7 +47,7 @@
     align-items: center;
     background-color: white;
     border-radius: 10px;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    /* filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); */
     z-index: 10;
     transition: all 0.2s ease-in-out;
 }
@@ -38,13 +72,15 @@
     margin: 10px;
 }
 
-.marker > div h3{
+.marker > div h4{
     margin-bottom: 5px;
     width: 250px;
+    font-size: 20px;
 }
 
 .marker > div p{
     display: flex;
+    font-size: 12px;
     flex-direction: column;
     align-items: center;
     margin: 0 0 5px 0;
