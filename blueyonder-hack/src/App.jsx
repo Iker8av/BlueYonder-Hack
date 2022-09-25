@@ -1,6 +1,7 @@
 import {GoogleMap, useLoadScript, Marker, DirectionsRenderer} from "@react-google-maps/api"
 import axios from 'axios'
 import './App.css';
+import Logos from './components/Logos/Logos';
 import Carousel from "./components/Carousel/Carousel";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         </div>
         <img src=""/>   
       </section>
-        <Carousel/>
+        <Carousel></Carousel>
       <section>
 
       </section>
@@ -34,7 +35,7 @@ function App() {
               </h2>
             </div>
             <div className="social">
-            
+              <Logos></Logos>
             </div>
           </div>
       </footer>
