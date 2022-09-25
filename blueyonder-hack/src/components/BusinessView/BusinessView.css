@@ -1,0 +1,93 @@
+.business_container{
+    background-color: #bcdff6;
+    color: #101955;
+}
+
+#administration{
+    margin-left: 75px;
+}
+
+h1{
+    font-size: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 0px;
+}
+
+.especifications > div{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.administration__container{
+    color: black;
+    font-weight: bold;
+    padding: 60px 0;
+    /* font-family: 'Antique Olive'; */
+    margin: 0;
+    
+}
+
+.especifications{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+}
+
+.capacity_container{
+    width: 42%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.virtualConcurrency_container{
+    width: 42%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.location_container{
+    width: 100%;
+    padding: 1rem;
+    background-color: #bcdff6;
+    color: #101955;
+}
+
+.recolection_container{
+    margin: 4rem 0;
+    width: 89%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.typeList{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 0 15px;
+    font-weight: bold;
+    border-radius: 100px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}

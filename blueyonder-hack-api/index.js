@@ -189,6 +189,22 @@ app.post('/addClick',async (req, res) => {
   }
 })
 
+app.post('/addCapacity',async (req, res) => {
+  try {
+    let center = new Parse.Query("Center")
+    let centerSelected = await center.equalTo('name', req.body.name).first()
+    var newInfo = centerSelected.toJSON()
+    console.log(req.body.capacity)
+    newInfo.capacity = parseInt(req.body.capacity)
+    centerSelected.save(newInfo)
+    res.status(201)
+    res.send({"center" : newInfo})
+  } catch (error) {
+    res.status(400)
+    res.send({"error" : "Failed to create userdata: " + error })
+  }
+})
+
 app.get('/helloWorld', (req, res) => {
     res.send('Hello World!')
 })

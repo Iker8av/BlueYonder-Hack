@@ -1,11 +1,10 @@
 import React from "react";
-import Logo from "../Navbar/img/logo.png"
 import { useNavigate } from "react-router-dom";
+import Logo from "../Navbar/img/logo.png"
 
-const Navbar = ({myRef}) => {
+const Navbar = ({myRef, type}) => {
     const navigate = useNavigate()
     const executeScroll = () => myRef.current.scrollIntoView()    
-
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
@@ -40,8 +39,8 @@ const Navbar = ({myRef}) => {
                             <li className="nav-item">
                             <a onClick={() => navigate("../SignUp", { replace: true })} className="nav-link" href="#">Sign in</a>
                             </li>
-                            <li className="nav-item">
-                            <a onClick={() => navigate("../LogIn", { replace: true })} className="nav-link" href="#">Log in</a>
+                            <li class="nav-item">
+                            {type !== "Company" ? <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a> : <a onClick={() => navigate("../Business", { replace: true })} class="nav-link" href="#">Business</a>}
                             </li>
                         </ul>
                         </div>
