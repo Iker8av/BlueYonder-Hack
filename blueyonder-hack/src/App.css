@@ -13,6 +13,39 @@
   }
 }
 
+h1{
+  margin-bottom: 4rem;
+}
+
+.description{
+  width: 80%;
+  display: flex;
+  margin: 6rem auto;
+  align-items: center;
+}
+
+.description p{
+  text-align: justify;
+  font-size: 1.2rem;
+}
+
+.imagenMain{
+  width: 100%;
+  border-radius: 50px;
+}
+
+.text{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-right: 2rem;
+}
+.imagenMain img{
+  width: 100%;
+  border-radius: 50px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -21,11 +54,34 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+.news{
+  font-size: 2.3rem;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+
+.noticias{
+  background: #bcdff6;
+  color: #000;
+}
+
+.noticias h2{
+  color: black;
+  font-weight: bold;
+  padding: 60px 0;
+  /* font-family: 'Antique Olive'; */
+  margin: 0;
+}
+
+#carouselExampleControls{
+  background: #bcdff6;
+  margin: 0;
+  padding-bottom: 5rem;
 }
 
 .carousel-control-prev{
@@ -39,11 +95,55 @@
 }
 
 .carousel-inner{
+  border-radius: 15px;
   width: 80%;
   height: 600px;
   margin: auto;
 }
 
+.logo{
+  width: 45%;
+  display: flex;
+  justify-content: left;
+}
+
+.navbar{
+  background-color: #101955;
+  padding: .3rem;
+  margin: 0;
+}
+.nav-item a{
+  color: #fff;
+  display: inline-block;
+  padding: 1.2rem;
+  margin-right: 2rem;
+}
+.nav-item a:hover{
+  color: rgb(162, 162, 162);
+}
+
+.dropdown-menu{
+  padding: 0;
+}
+.dropdown-menu hr{
+  padding: 0;
+  margin: 0;
+}
+.dropdown-menu a{
+  color: #000;
+}
+.dropdown-menu a:hover{
+  color: #fff;
+  background-color: #3c9cbc;
+}
+.contenedorMenu{
+  width: 80%;
+  display: flex;
+  font-size: 1.1rem;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
 
 @keyframes App-logo-spin {
   from {
