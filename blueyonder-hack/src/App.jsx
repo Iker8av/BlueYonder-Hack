@@ -37,8 +37,11 @@ function App() {
         <h2 className="news">Latest News</h2>
       </section>
         <Carousel/>
-      {/* Contacto */}
       <footer>
+        <div className="wrapper">
+         <div className="derechos">Todos los derechos reservados</div>
+         <div className="hack">Hack Monterrey 2022</div>
+        </div>
       </footer>
     </div>
   );
