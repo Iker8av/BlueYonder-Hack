@@ -4,7 +4,13 @@ import './App.css';
 import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import Login from './components/LogIn/Login'
+import SignIn from "./components/SignIn/SignIn";
+import Announce from "./components/Announce/Announce";
+>>>>>>> f1f79f1c72000b37053c7bb79fca235ba1a3e257
 
 function App() {
   const navigate = useNavigate()
@@ -40,6 +46,10 @@ function App() {
         <h2 className="news">Latest News</h2>
       </section>
         <Carousel/>
+
+      <section className="Announce">
+        <Announce/>
+      </section>
       <footer>
         <div className="wrapper">
          <div className="derechos">Todos los derechos reservados</div>

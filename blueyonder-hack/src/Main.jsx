@@ -5,6 +5,7 @@ import App from "./App";
 import SignIn from "./components/SignIn/SignIn";
 import Login from "./components/LogIn/Login";
 import axios from 'axios'
+import BusinessView from "./components/BusinessView/BusinessView";
 
 export default function Main() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(localStorage.getItem("sessionToken") !== null)
