@@ -4,6 +4,8 @@ import './App.css';
 import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
+import Login from './components/LogIn/Login'
+import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   return (
