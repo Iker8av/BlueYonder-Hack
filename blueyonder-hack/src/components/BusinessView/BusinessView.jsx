@@ -32,15 +32,15 @@ export default function Login({isLoggedIn, handleLogin}) {
     <div>
       <div className="businessView">
         <div className="administration__container">
-            <h1 id='administration'>Administration of Your Centre</h1>
-
-          
+            <h2 id='administration'>Administration of Your Centre</h2>
         </div>
-        <div className="capacity_container">
-            <h1 id='capacity'>Current Capacity of the Centre</h1>
-        </div>
-        <div className="virtualConcurrency_container">
-            <h1 id='virtualConcurrency'>Virtual Concurrency in your ubication</h1>
+        <div className="especifications">
+            <div className="capacity_container">
+                <h1 id='capacity'>Current Capacity of the Centre</h1>
+            </div>
+            <div className="virtualConcurrency_container">
+                <h1 id='virtualConcurrency'>Virtual Concurrency in your ubication</h1>
+            </div>
         </div>
         <div className="recolection_container">
             <h1 id='recolection'>Your recolection</h1>

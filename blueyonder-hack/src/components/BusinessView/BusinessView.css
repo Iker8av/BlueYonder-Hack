@@ -1,19 +1,68 @@
 .business_container{
-    align-items: center;
-    margin: auto;
-    width: 411px;
-    height: 499px;
-    left: 79px;
-    top: 3220px;
-
-    background: #D8E4EE;
-    border-radius: 10px;
+    background-color: #bcdff6;
+    color: #101955;
 }
 
 h1{
+    font-size: 2rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 2rem;
     margin-right: 2rem;
+}
+
+.administration__container{
+    color: black;
+    font-weight: bold;
+    padding: 60px 0;
+    /* font-family: 'Antique Olive'; */
+    margin: 0;
+    
+}
+
+.especifications{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+}
+
+.capacity_container{
+    width: 42%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.virtualConcurrency_container{
+    width: 42%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.location_container{
+    width: 100%;
+    padding: 1rem;
+    background-color: #bcdff6;
+    color: #101955;
+}
+
+.recolection_container{
+    margin: 4rem 0;
+    width: 89%;
+    background-color: #bcdff6;
+    color: #101955;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    border-radius: 20px;
 }
