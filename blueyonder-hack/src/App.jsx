@@ -5,19 +5,22 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="description" >
+        <div className="text">
+            <h1>Recycle And Live</h1>
+            <p>Recycle And Live is a website that helps you find the nearest recycling center to you. We also provide you with information about recycling and how to recycle.</p>
+        </div>
+
+        <img src=""/>   
+      </section>
+      {/* Lastest news */}
+      <section>
+
+      </section>
+      {/* Contacto */}
+      <footer>
+
+      </footer>
     </div>
   );
 }
