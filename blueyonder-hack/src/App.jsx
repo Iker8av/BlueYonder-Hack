@@ -23,8 +23,6 @@ function App() {
       <footer>
 
       </footer>
-      <Login></Login>
-      <SignIn></SignIn>
     </div>
   );
 }
