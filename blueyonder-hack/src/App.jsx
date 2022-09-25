@@ -4,6 +4,7 @@ import './App.css';
 import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
+import Announce from "./components/Announce/Announce";
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
         <h2 className="news">Latest News</h2>
       </section>
         <Carousel/>
+
+      <section className="Announce">
+        <Announce/>
+      </section>
       <footer>
         <div className="wrapper">
          <div className="derechos">Todos los derechos reservados</div>
