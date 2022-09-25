@@ -2,7 +2,7 @@ import React from "react";
 
 import Logo from "../Navbar/img/logo.png"
 
-const Navbar = () => {
+const Navbar = ({navigate}) => {
     return (
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -32,10 +32,10 @@ const Navbar = () => {
                             </ul>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="#">Sign in</a>
+                            <a onClick={() => navigate("../SignUp", { replace: true })} class="nav-link" href="#">Sign in</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="#">Log in</a>
+                            <a onClick={() => navigate("../LogIn", { replace: true })} class="nav-link" href="#">Log in</a>
                             </li>
                         </ul>
                         </div>

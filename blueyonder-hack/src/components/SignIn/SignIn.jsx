@@ -119,7 +119,6 @@ export default function SignIn({handleLogin}) {
             <h5>Password Confirmation</h5>
             <input type="password" className='passwordConfirmation_input'/>
             <div className="signIn__container__button">
-              <a href='' className='forgot_password'> Forgot your Password?</a>
               <button onClick={() => {}} type="submit" className="signIn__signInButton">
                 Submit
               </button>

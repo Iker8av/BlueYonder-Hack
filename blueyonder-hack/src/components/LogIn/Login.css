@@ -1,4 +1,10 @@
-
+.login{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+}
 
 .login_text{
     font-size: 1rem;

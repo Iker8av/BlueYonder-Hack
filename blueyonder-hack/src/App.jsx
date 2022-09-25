@@ -4,14 +4,15 @@ import './App.css';
 import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
-import Login from './components/LogIn/Login'
-import SignIn from "./components/SignIn/SignIn";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate()
+
   return (
     <div className="App">
       <section>
-        <Navbar/>
+        <Navbar navigate={navigate}/>
       </section>
       <section className="description">
         <div className="text">
