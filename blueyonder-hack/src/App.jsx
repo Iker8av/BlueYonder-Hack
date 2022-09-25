@@ -1,6 +1,7 @@
 import {GoogleMap, useLoadScript, Marker, DirectionsRenderer} from "@react-google-maps/api"
 import axios from 'axios'
 import './App.css';
+import Map from "./components/Map/Map";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <footer>
 
       </footer>
+      <Map></Map>
     </div>
   );
 }
