@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.carousel-control-prev{
+  width: 40%;
+  margin: auto;
+}
+
+.carousel-control-next{
+  width: 40%;
+  margin: auto;
+}
+
+.carousel-inner{
+  width: 80%;
+  height: 600px;
+  margin: auto;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
