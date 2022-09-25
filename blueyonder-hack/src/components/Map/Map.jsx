@@ -35,46 +35,6 @@ export default function Map() {
         setLocations([...loc.data])
     }
 
-    // const addClick = (id) => {
-    //     axios.post(`${config.API_BASE_URL}/addClick`, {id})
-    // }
-
-    // const handleLoading = React.useCallback( async (event) => {
-    //     if (locations) setLoading(false)
-          
-    //   }, [locations])
-
-    // const handleOpenInMaps = (address) => {
-    //     window.open(
-    //         `https://maps.google.com/?q=${address}`,
-    //         '_blank'
-    //     )
-    // }
-
-    // const GetDirections = (data) =>{
-    //     const directionsService = new window.google.maps.DirectionsService();
-
-    //     directionsService.route(
-    //       {
-    //         origin: currentPos,
-    //         destination: {lat: data.lat, lng: data.lng},
-    //         travelMode: window.google.maps.TravelMode.DRIVING
-    //       },
-    //       (result, status) => {
-    //         if (status === window.google.maps.DirectionsStatus.OK) {
-    //           updateDirections(result)
-    //         } else {
-    //           console.error(`error fetching directions ${result}`);
-    //         }
-    //       }
-    //     );
-    //   }
-
-    // const manageClick = (loc) => {
-    //     addClick(loc.objectId); 
-    //     setLocSelected(loc);
-    // }
-
     React.useEffect(() => {
         Geocode.setApiKey("AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o")
 
