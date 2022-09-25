@@ -2,6 +2,7 @@ import {GoogleMap, useLoadScript, Marker, DirectionsRenderer} from "@react-googl
 import axios from 'axios'
 import './App.css';
 import Login from './components/LogIn/Login'
+import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
       </footer>
       <Login></Login>
+      <SignIn></SignIn>
     </div>
   );
 }

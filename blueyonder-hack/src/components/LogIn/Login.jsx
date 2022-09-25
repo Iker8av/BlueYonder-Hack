@@ -73,7 +73,7 @@ export default function Login() {
             </div>
           </form>
           <p id='paragraph'>
-            By signing-in you agree to the BlueYonder Conditions of Use & Sale.
+            By logIng-in you agree to the BlueYonder Conditions of Use & Sale.
             Please see our Privacy Notice, our Cookies Notice and our
             Interest-Based Ads Notice.
           </p>

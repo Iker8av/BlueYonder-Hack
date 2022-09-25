@@ -80,11 +80,6 @@ h5{
     color: white;
 }
 
-.recover__password{
-    font-size: .68rem;
-    
-}
-
 .login__signInButton:hover{
     background: #04b4f3;
     cursor: pointer;
