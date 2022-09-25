@@ -1,0 +1,69 @@
+.Map {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    height: 600px;
+    align-items: center;
+}
+
+.marker{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    z-index: 10;
+    transition: all 0.2s ease-in-out;
+}
+
+.marker:hover{
+    position: relative;
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.marker img{
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+}
+
+.marker > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+}
+
+.marker > div h3{
+    margin-bottom: 5px;
+    width: 250px;
+}
+
+.marker > div p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 5px 0;
+    width: 250px;
+    color: rgb(96, 96, 96);
+}
+
+.marker > div button {
+    width: fit-content;
+    margin: 5px 0 10px 0;
+    border-style: none;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.marker .mapbuttons button{
+    margin: 5px 10px;
+}
