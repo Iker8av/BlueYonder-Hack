@@ -44,18 +44,26 @@
   margin: auto;
 }
 footer{
+  height: auto;
   background-color: #282c34;
   color: white;
-  padding: 20px;
+  padding: 50px;
   flex: auto;
   flex-direction: row;
+  position: absolute;
+  bottom: 0; 
+  width: 100%;
+  float: left;
 }
-
+.contact{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .contact ul{
   list-style-type: none;
-  padding: 0;
+  margin: 0;
 }
-
 
 @keyframes App-logo-spin {
   from {
