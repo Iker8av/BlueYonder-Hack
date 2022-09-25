@@ -73,7 +73,7 @@ const getLocations = async (data) => {
     const query = 'recycling'
     var config = {
       method: 'get',
-      url: encodeURI(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${data.lat},${data.lng}&radius=15000&keyword=${query}&key=AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o`),
+      url: encodeURI(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${data.lat},${data.lng}&radius=10000&keyword=${query}&key=AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o`),
       headers : {
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Origin": "*",
@@ -92,20 +92,25 @@ const compareCenters = async (body) => {
   const allCentersPromise = await axios.get(`${API_BASE_URL}/getCenters`)
   const allCenters = allCentersPromise.data
 
+  var count = 0;
+
   for (const loc of allLocations) { 
     if(allCenters.length > 0) {
       for (const cent of allCenters) { 
-        if(cent.name === loc.name){
-          return
+        if(cent.name == loc.name){
+          count++
+          return;
         }
-
+      }
+      if (count == 0){
         const newCenter = {
           "name": loc.name,
           "lat": loc.geometry.location.lat,
           "lng": loc.geometry.location.lng,
-          "address": loc.vicinity
+          "placeid": loc.place_id,
+          "address": loc.vicinity,
+          "photos": loc.photos
         }
-        
         await axios.post(`${API_BASE_URL}/addCenter`, newCenter)
       }
     }
@@ -114,7 +119,9 @@ const compareCenters = async (body) => {
         "name": loc.name,
         "lat": loc.geometry.location.lat,
         "lng": loc.geometry.location.lng,
-        "address": loc.vicinity
+        "placeid": loc.place_id,
+        "address": loc.vicinity,
+        "photos": loc.photos
       }
 
       await axios.post(`${API_BASE_URL}/addCenter`, newCenter)
@@ -123,20 +130,64 @@ const compareCenters = async (body) => {
 
 }
 
+const ToRad = (num) => {
+  return num * Math.PI / 180
+}
+
+const filterDistance = (data, userData) => {
+  const newList = data.filter(loc => {
+      var R = 6371; // km
+      var x1 = loc.lat - userData.lat;
+      var dLat = ToRad(x1)
+      var x2 = loc.lng - userData.lng;
+      var dLon = ToRad(x2)
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(ToRad(userData.lat)) * Math.cos(ToRad(loc.lat)) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      var d = R * c;
+
+      if (d <= 10) {return loc}
+  })
+
+  return newList
+}
+
 app.post('/getLocations', async (req, res) => {
   try {
       await compareCenters(req.body)
   
-      const allCenters = await axios.get(`${API_BASE_URL}/getCenters`)
-  
-      res.send(allCenters.data).status(200)
+      const finalCenters = await axios.get(`${API_BASE_URL}/getCenters`)
+        .then(function (response) {
+          return filterDistance(response.data, req.body)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
+      res.send(finalCenters).status(200)
     }
     catch (error) {
       res.status(400)
       res.send("Error")
     }
     
-  })
+})
+
+app.post('/addClick',async (req, res) => {
+  try {
+    let center = new Parse.Query("Center")
+    let centerSelected = await center.equalTo('objectId', req.body.id).first()
+    const newInfo = centerSelected.toJSON()
+    newInfo.clicks++
+    centerSelected.save(newInfo)
+    res.status(201)
+    res.send({"center" : newInfo})
+  } catch (error) {
+    res.status(400)
+    res.send({"error" : "Failed to create userdata: " + error })
+  }
+})
 
 app.get('/helloWorld', (req, res) => {
     res.send('Hello World!')
