@@ -1,40 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import './Login.css'
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(localStorage.getItem("sessionToken") !== null)
+export default function Login({isLoggedIn, handleLogin}) {
+  const navigate = useNavigate()
 
   const email = React.createRef();
   const password = React.createRef();
-
-  React.useEffect(() => {
-
-  }, [])
-
-  const addAuthenticationHeader = () => {
-    const sessionToken = localStorage.getItem("session_token")
-    if (sessionToken !== null) {
-      axios.defaults.headers.common = {
-        "session_token": sessionToken
-      };
-    }
-  }
-  addAuthenticationHeader()
-
-  const handleLogout = () => {
-    localStorage.removeItem("session_token")
-
-    axios.defaults.headers.common = {};
-    setIsLoggedIn(false)
-  }
-
-  const handleLogin = (user) => {
-    localStorage.setItem("session_token", user["sessionToken"])
-    addAuthenticationHeader()
-
-    setIsLoggedIn(true)
-  }
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -47,7 +20,7 @@ export default function Login() {
             })
 
             handleLogin(res.data.user)
-            // navigate("../Home/1", { replace: true })
+            navigate("../", { replace: true })
         } catch (err) {
             alert(err)
         }

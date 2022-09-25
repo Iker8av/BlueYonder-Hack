@@ -1,4 +1,10 @@
-
+.signIn_user{
+    width: fit-content;
+    position: relative;
+    margin: auto;
+    background: #D8E4EE;
+    border-radius: 10px;
+}
 
 .signIn_text{
     font-size: 1rem;
@@ -12,14 +18,14 @@
 
 .signIn__container{
     align-items: center;
+    justify-content: center;
     margin: auto;
     width: 411px;
-    height: 700px;
-    left: 79px;
-    top: 3220px;
+    padding: 10px;
+}
 
-    background: #D8E4EE;
-    border-radius: 10px;
+.signIn__container h1 {
+    margin-top: 10px !important;
 }
 
 h5{
@@ -161,4 +167,32 @@ p{
     background: #FFFFFF;
     border-radius: 2px;
     font-size: 1rem;
+}
+
+.horizontal-scroll{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: auto;
+    overflow:auto;
+    margin: auto;
+    white-space: nowrap;
+}
+
+.waste-option{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 0 15px;
+    font-weight: bold;
+    border-radius: 100px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.waste-option.active {
+    background: rgb(0, 106, 168);
+    color: white;
 }
