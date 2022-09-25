@@ -8,6 +8,8 @@ import Geocode from "react-geocode";
 export default function Map() {
     const [currentPos, updateCurrentPos] = React.useState(null)
     const [locations, setLocations] = React.useState(null)
+    const [locSelected, setLocSelected] = React.useState(null)
+    const [directions, updateDirections] = React.useState(null)
     const [ libraries ] = React.useState(['places']);
 
     const {isLoaded, loadError} = useLoadScript({
@@ -31,6 +33,41 @@ export default function Map() {
         setLocations([...loc.data])
     }
 
+    const addClick = (id) => {
+        axios.post(`${config.API_BASE_URL}/addClick`, {id})
+    }
+
+    const handleOpenInMaps = (address) => {
+        window.open(
+            `https://maps.google.com/?q=${address}`,
+            '_blank'
+        )
+    }
+
+    const GetDirections = (data) =>{
+        const directionsService = new window.google.maps.DirectionsService();
+
+        directionsService.route(
+          {
+            origin: currentPos,
+            destination: {lat: data.lat, lng: data.lng},
+            travelMode: window.google.maps.TravelMode.DRIVING
+          },
+          (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+              updateDirections(result)
+            } else {
+              console.error(`error fetching directions ${result}`);
+            }
+          }
+        );
+      }
+
+    const manageClick = (loc) => {
+        addClick(loc.objectId); 
+        setLocSelected(loc);
+    }
+
     React.useEffect(() => {
         Geocode.setApiKey("AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o")
 
@@ -49,31 +86,50 @@ export default function Map() {
     }, []);
 
   return (
-    <div className='Map'>
-        {(isLoaded && currentPos && locations) &&
-            <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                zoom={14}
-                center={{lat: currentPos.lat, lng: currentPos.lng}}
-                options={options}>
-                    {locations.map((loc) => {
-                        return (
-                            <OverlayView
-                                position={{lat: loc.lat, lng: loc.lng}}
-                                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                            >
-                            <div className='marker'>
-                                <img src="" alt="img" />
-                                <div>
-                                    <h3>{loc.name}</h3>
-                                    <p>Description...</p>
-                                    <button>Open In Maps</button>
+    <div>
+        <div className='Map'>
+            {(isLoaded && currentPos && locations) &&
+                <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    zoom={15}
+                    center={{lat: currentPos.lat, lng: currentPos.lng}}
+                    options={options}>
+                        <Marker position={{lat: currentPos.lat, lng: currentPos.lng}} />
+                        {locations.map((loc) => {
+                            return (
+                                <OverlayView
+                                    position={{lat: loc.lat, lng: loc.lng}}
+                                    mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                                    key={loc.objectId}
+                                >
+                                <div className='marker' onClick={() => {manageClick(loc)}}>
+                                    <div>
+                                        <h3>{loc.name}</h3>
+                                        <p>{loc.address}</p>
+                                        <p>Interactions: {loc.clicks}  -  Capacity: {loc.capacity}% </p>
+                                        <div className='mapbuttons'>
+                                            <button onClick={(e) => {handleOpenInMaps(loc.address)}}>Open In Maps</button>
+                                            <button onClick={(e) => {GetDirections(loc)}}>Get Directions</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            </OverlayView>
-                        )
-                    })}
-            </GoogleMap>}
+                                </OverlayView>
+                                
+                            )
+                        })}
+                        {directions && <DirectionsRenderer
+                            directions={directions}/>}
+                </GoogleMap>}
+        </div>
+        {locSelected && 
+            <div className='loc-Details'>
+                <h2>{locSelected.name}</h2>
+                <p>{locSelected.address}</p>
+                <div>
+                    <div></div>
+                </div>
+            </div>        
+        }
     </div>
   )
 }

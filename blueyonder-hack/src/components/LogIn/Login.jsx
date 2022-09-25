@@ -60,14 +60,14 @@ export default function Login() {
       <div className="login">
         <div className="login__container">
             <h1 id='login'>Log In</h1>
-          <form>
+          <form onSubmit={(e) => {handleSubmit(e)}}>
             <h5>E-mail</h5>
             <input ref={email} type="text" className='email_input'/>
             <h5>Password</h5>
             <input ref={password} type="text" className='password_input'/>
             <div className="login__container__button">
               <a href='' className='forgot_password'> Forgot your Password?</a>
-              <button onClick={() => {handleSubmit()}} type="submit" className="login__signInButton">
+              <button type="submit" className="login__signInButton">
                 Submit
               </button>
             </div>
