@@ -19,6 +19,22 @@ function App() {
       </section>
       {/* Contacto */}
       <footer>
+        <div className="contact">
+            <ul>
+              <li><h2>Contact Us</h2></li>
+              <li><a href="https://blueyonder.com">BlueYonder</a></li>  
+              <li><a href="mailto: pylinthon@gmail.com">pylinthon@gmail</a></li>
+            </ul>
+          </div>
+
+          <div className="center-footer">
+            <h2>
+              Made by Pylinthon
+            </h2>
+          </div>
+
+          <div className="social">
+          </div>
       </footer>
     </div>
   );

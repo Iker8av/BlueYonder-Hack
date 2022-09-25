@@ -43,6 +43,18 @@
   height: 600px;
   margin: auto;
 }
+footer{
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  flex: auto;
+  flex-direction: row;
+}
+
+.contact ul{
+  list-style-type: none;
+  padding: 0;
+}
 
 
 @keyframes App-logo-spin {
