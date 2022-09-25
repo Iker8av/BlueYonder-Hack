@@ -46,7 +46,7 @@ export default function BusinessView({isLoggedIn, handleLogin}) {
         <div className="especifications">
             <div className="capacity_container">
                 <h1 id='capacity'>Current Capacity of the Centre</h1>
-               {!edit ? <p style={{"fontSize":"36px", "fontWeight":"bold"}}>{capacity}</p> : <input type="number" onChange={(e) => setCapacity(e.target.value)} style={{"width":"150px","height":"50px"}}/>}
+               {!edit ? <p style={{"fontSize":"36px", "fontWeight":"bold"}}>{capacity} kg</p> : <input type="number" onChange={(e) => setCapacity(e.target.value)} style={{"width":"150px","height":"50px"}}/>}
                 {edit ? <button onClick={() => manageButton()}>Apply</button> : <button onClick={() => setEdit(true)}>Edit</button>}
             </div>
             <div className="virtualConcurrency_container">
