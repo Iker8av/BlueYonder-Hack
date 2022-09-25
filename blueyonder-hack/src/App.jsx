@@ -4,11 +4,8 @@ import './App.css';
 import Carousel from "./components/Carousel/Carousel";
 import Navbar from "./components/Navbar/Navbar";
 import nature from "../src/img/natureimg.png";
-import { useNavigate } from "react-router-dom";
 
-function App() {
-  const navigate = useNavigate()
-
+function App({myRef}) {
   return (
     <div className="App">
       <section className="description">
@@ -34,7 +31,7 @@ function App() {
         </div>
       </section>
       <section className="noticias">
-        <h2 className="news">Latest News</h2>
+        <h2 className="news" ref={myRef}>Latest News</h2>
       </section>
         <Carousel/>
       <footer>
