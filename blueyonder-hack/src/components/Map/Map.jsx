@@ -35,14 +35,111 @@ export default function Map() {
         setLocations([...loc.data])
     }
 
-    const addClick = (id) => {
-        axios.post(`${config.API_BASE_URL}/addClick`, {id})
-    }
+    // const addClick = (id) => {
+    //     axios.post(`${config.API_BASE_URL}/addClick`, {id})
+    // }
 
-    const handleLoading = React.useCallback( async (event) => {
-        if (locations) setLoading(false)
+    // const handleLoading = React.useCallback( async (event) => {
+    //     if (locations) setLoading(false)
           
-      }, [locations])
+    //   }, [locations])
+
+    // const handleOpenInMaps = (address) => {
+    //     window.open(
+    //         `https://maps.google.com/?q=${address}`,
+    //         '_blank'
+    //     )
+    // }
+
+    // const GetDirections = (data) =>{
+    //     const directionsService = new window.google.maps.DirectionsService();
+
+    //     directionsService.route(
+    //       {
+    //         origin: currentPos,
+    //         destination: {lat: data.lat, lng: data.lng},
+    //         travelMode: window.google.maps.TravelMode.DRIVING
+    //       },
+    //       (result, status) => {
+    //         if (status === window.google.maps.DirectionsStatus.OK) {
+    //           updateDirections(result)
+    //         } else {
+    //           console.error(`error fetching directions ${result}`);
+    //         }
+    //       }
+    //     );
+    //   }
+
+    // const manageClick = (loc) => {
+    //     addClick(loc.objectId); 
+    //     setLocSelected(loc);
+    // }
+
+    React.useEffect(() => {
+        Geocode.setApiKey("AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o")
+
+        if (navigator.geolocation) {
+	    	navigator.geolocation.getCurrentPosition(showPosition);
+	  	} else {
+            console.log("Geolocation is not supported by this browser.")
+	  	}
+
+        function showPosition(position) {
+            const coords = {lat: position.coords.latitude, lng: position.coords.longitude}
+            updateCurrentPos(coords)
+            getLocations(coords)
+        }
+              
+    }, []);
+
+  return (
+    <div>
+        <div className='Map'>
+            { currentPos ? (isLoaded && currentPos && locations) &&
+                <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    zoom={15}
+                    center={{lat: currentPos.lat, lng: currentPos.lng}}
+                    options={options}>
+                        <Marker position={{lat: currentPos.lat, lng: currentPos.lng}} />
+                        {locations.map((loc) => {
+                            return ( 
+                                <OverlayView
+                                    position={{lat: loc.lat, lng: loc.lng}}
+                                    mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                                    key={loc.objectId}
+                                >
+                                    <MarkerCircle loc={loc} setLocSelected={setLocSelected} currentPos={currentPos} updateDirections={updateDirections}/>
+                                    {/* <div className='markerCircle'></div>
+                                    <MarkerCircle loc={loc} setLocSelected={setLocSelected} currentPos={currentPos} updateDirections={updateDirections}> </MarkerCircle>
+                                <div className='marker' onClick={() => {manageClick(loc)}}>
+                                    <div>
+                                        <h4>{loc.name}</h4>
+                                        <p>{loc.address}</p>
+                                        {loc.type && loc.type.map((type) => {return type && <p>{type}, </p>})}
+                                        <p>Interactions: {loc.clicks}  -  Capacity: {loc.capacity}% </p>
+                                        <div className='mapbuttons'>
+                                            <button onClick={(e) => {handleOpenInMaps(loc.address); manageClick(loc)}}>Open In Maps</button>
+                                            <button onClick={(e) => {GetDirections(loc); manageClick(loc)}}>Get Directions</button>
+                                        </div>
+                                    </div>
+                                </div> */}
+                                </OverlayView>
+                                
+                            )
+                        })}
+                        {directions && <DirectionsRenderer
+                            directions={directions}/>}
+                </GoogleMap> 
+                : <img className='loading' src="https://parspng.com/wp-content/uploads/2021/11/arrowpng.parspng.com-16.png" alt="" />
+                }
+        </div>
+    </div>
+  )
+}
+
+export function MarkerCircle({loc, setLocSelected, currentPos, updateDirections}){
+    const [hover, setHover] = React.useState(false)
 
     const handleOpenInMaps = (address) => {
         window.open(
@@ -70,68 +167,30 @@ export default function Map() {
         );
       }
 
-    const manageClick = (loc) => {
-        addClick(loc.objectId); 
-        setLocSelected(loc);
+      const addClick = (id) => {
+        axios.post(`${config.API_BASE_URL}/addClick`, {id})
     }
 
-    React.useEffect(() => {
-        Geocode.setApiKey("AIzaSyBZ-L6y4RM_Adga1qdKEj8ZTMCBkMHE_3o")
+    const manageClick = (loc) => {
+        addClick(loc.objectId); 
+    }
 
-        if (navigator.geolocation) {
-	    	navigator.geolocation.getCurrentPosition(showPosition);
-	  	} else {
-            console.log("Geolocation is not supported by this browser.")
-	  	}
-
-        function showPosition(position) {
-            const coords = {lat: position.coords.latitude, lng: position.coords.longitude}
-            updateCurrentPos(coords)
-            getLocations(coords)
-        }
-              
-    }, []);
-
-  return (
-    <div>
-        <div className='Map'>
-            { currentPos ? (isLoaded && currentPos && locations) &&
-                <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={15}
-                    center={{lat: currentPos.lat, lng: currentPos.lng}}
-                    options={options}
-                    onLoad={() => handleLoading}>
-                        <Marker position={{lat: currentPos.lat, lng: currentPos.lng}} />
-                        {locations.map((loc) => {
-                            return (
-                                <OverlayView
-                                    position={{lat: loc.lat, lng: loc.lng}}
-                                    mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                                    key={loc.objectId}
-                                >
-                                <div className='marker' onClick={() => {manageClick(loc)}}>
-                                    <div>
-                                        <h4>{loc.name}</h4>
-                                        <p>{loc.address}</p>
-                                        {loc.type && loc.type.map((type) => {return type && <p>{type}, </p>})}
-                                        <p>Interactions: {loc.clicks}  -  Capacity: {loc.capacity}% </p>
-                                        <div className='mapbuttons'>
-                                            <button onClick={(e) => {handleOpenInMaps(loc.address); manageClick(loc)}}>Open In Maps</button>
-                                            <button onClick={(e) => {GetDirections(loc); manageClick(loc)}}>Get Directions</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                </OverlayView>
-                                
-                            )
-                        })}
-                        {directions && <DirectionsRenderer
-                            directions={directions}/>}
-                </GoogleMap> 
-                : <img className='loading' src="https://parspng.com/wp-content/uploads/2021/11/arrowpng.parspng.com-16.png" alt="" />
-                }
+    return (
+        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{"position":"relative"}}>
+            <div  className='markerCircle' style={{"position":"relative"}}>
+            </div>
+                {hover &&  <div className='marker'>
+                    <div>
+                        <h4>{loc.name}</h4>
+                        <p>{loc.address}</p>
+                        {loc.type && loc.type.map((type) => {return type && <p>{type}, </p>})}
+                        <p>Interactions: {loc.clicks}  -  Capacity: {loc.capacity}% </p>
+                        <div className='mapbuttons'>
+                        <button onClick={(e) => {handleOpenInMaps(loc.address); manageClick(loc)}}>Open In Maps</button>
+                        <button onClick={(e) => {GetDirections(loc); manageClick(loc)}}>Get Directions</button>
+                    </div>
+                </div>
+                </div>}
         </div>
-    </div>
-  )
+    )
 }

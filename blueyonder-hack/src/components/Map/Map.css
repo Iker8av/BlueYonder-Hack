@@ -47,15 +47,10 @@
     align-items: center;
     background-color: white;
     border-radius: 10px;
-    /* filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); */
-    z-index: 10;
-    transition: all 0.2s ease-in-out;
-}
-
-.marker:hover{
-    position: relative;
-    transform: scale(1.1);
-    z-index: 1;
+    position: absolute;
+    left: 50%; 
+    transform: translate(-50%, 0%); 
+    top: 20px;
 }
 
 .marker img{
@@ -102,4 +97,12 @@
 
 .marker .mapbuttons button{
     margin: 5px 10px;
+}
+
+.markerCircle {
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
 }
