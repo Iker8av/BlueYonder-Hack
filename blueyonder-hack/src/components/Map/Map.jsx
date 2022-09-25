@@ -121,15 +121,6 @@ export default function Map() {
                             directions={directions}/>}
                 </GoogleMap>}
         </div>
-        {locSelected && 
-            <div className='loc-Details'>
-                <h2>{locSelected.name}</h2>
-                <p>{locSelected.address}</p>
-                <div>
-                    <div></div>
-                </div>
-            </div>        
-        }
     </div>
   )
 }
